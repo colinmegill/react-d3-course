@@ -11,6 +11,7 @@ import configureStore from "./store";
 
 // controller view
 import App from "./components/app";
+import Bar from "./components/lessons/01-bar";
 
 const store = configureStore();
 
@@ -20,7 +21,10 @@ class Root extends React.Component {
     return (
       <div>
         <Provider store={store}>
-          <App/>
+          <Router history={browserHistory}>
+            <Route path="/" component={App}/>
+            <Router path="bar" component={Bar}/>
+          </Router>
         </Provider>
       </div>
     );

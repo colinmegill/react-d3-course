@@ -1,11 +1,15 @@
 import React from "react";
+import {Link} from "react-router";
 
 class App extends React.Component {
 
   render() {
 
     return (
-      <p> react d3 4 </p>
+      <div>
+        <p> Table of Contents </p>
+        <Link to="bar">1: basic bar chart</Link>
+      </div>
     );
   }
 }
