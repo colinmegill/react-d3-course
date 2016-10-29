@@ -12,6 +12,7 @@ import configureStore from "./store";
 // controller view
 import App from "./components/app";
 import Bar from "./components/lessons/01-bar";
+import Label from "./components/lessons/02-labels";
 
 const store = configureStore();
 
@@ -24,6 +25,7 @@ class Root extends React.Component {
           <Router history={browserHistory}>
             <Route path="/" component={App}/>
             <Router path="bar" component={Bar}/>
+            <Router path="label" component={Label}/>
           </Router>
         </Provider>
       </div>
