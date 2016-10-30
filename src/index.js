@@ -23,22 +23,25 @@ import Nobels from "./components/lessons/nobels";
 
 const store = configureStore();
 
+
+
 class Root extends React.Component {
   render() {
     return (
       <div>
         <Provider store={store}>
           <Router history={browserHistory}>
-            <Route path="/" component={App}/>
-            <Router path="bar" component={Bar}/>
-            <Router path="labels" component={Labels}/>
-            <Router path="line" component={Line}/>
-            <Router path="scatter" component={Scatter}/>
-            <Router path="scatter-animated" component={ScatterAnimated}/>
-            <Router path="tree" component={Tree}/>
-            <Router path="hexbin" component={Hexbin}/>
-            <Router path="multiline" component={Multiline}/>
-            <Router path="nobel" component={Nobels}/>
+            <Route path="/" component={App}>
+              <Route path="bar" component={Bar}/>
+              <Route path="labels" component={Labels}/>
+              <Route path="line" component={Line}/>
+              <Route path="scatter" component={Scatter}/>
+              <Route path="scatter-animated" component={ScatterAnimated}/>
+              <Route path="tree" component={Tree}/>
+              <Route path="hexbin" component={Hexbin}/>
+              <Route path="multiline" component={Multiline}/>
+            </Route>
+            <Route path="nobel" component={Nobels}/>
           </Router>
         </Provider>
       </div>

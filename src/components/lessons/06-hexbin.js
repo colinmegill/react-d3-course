@@ -22,8 +22,8 @@ class Hexbin extends React.Component {
     const chartWidth = 1000;
     const y = d3.scaleLinear().domain([0, 50000]).range([0, chartHeight])
     return (
-      <div style={{margin: 20}}>
-        <Heading text="Bar Chart"/>
+      <div>
+        <Heading> Hex bins </Heading>
         <svg height={chartHeight} width={chartWidth} style={{border: "1px solid rgb(230,230,230)"}}>
 
         </svg>

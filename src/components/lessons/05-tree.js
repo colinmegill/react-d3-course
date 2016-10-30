@@ -53,14 +53,14 @@ const Tree = ({root}) => {
 
   console.log("rendering tree");
 
-  const width = 1200;
-  const height = 600;
+  const width = 1000;
+  const height = 500;
   const tree = d3.tree().size([height, width - 160]);
 
   const links = tree(root).descendants().slice(1);
   return (
     <svg
-      style={{"border": "2px solid black", "margin": "20px"}}
+      style={{"border": "2px solid black"}}
       width={width}
       height={height}>
       <g transform={"translate(100,0)"}>
@@ -124,7 +124,7 @@ class Container extends React.Component {
   }
   render() {
     return (
-      <div style={{margin: 20}}>
+      <div>
         <Heading> Dendogram </Heading>
         {this.state.root ? <Tree root={this.state.root}/> : this.spinner()}
       </div>
