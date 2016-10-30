@@ -16,7 +16,7 @@ import flare from "../../data/flare";
 const Node = ({x, y, hasChildren, name, i}) => {
   return (
     <g transform={"translate(" + y + "," + x + ")"}>
-      <circle r={hasChildren ? 3 : 1} />
+      <circle r={hasChildren ? 2 : .5} />
       <text
         dx={hasChildren ? -8 : 8}
         dy={3}
@@ -53,8 +53,8 @@ const Tree = ({root}) => {
 
   console.log("rendering tree");
 
-  const width = 2000;
-  const height = 3000;
+  const width = 1200;
+  const height = 600;
   const tree = d3.tree().size([height, width - 160]);
 
   const links = tree(root).descendants().slice(1);

@@ -15,6 +15,7 @@ import Bar from "./components/lessons/01-bar";
 import Labels from "./components/lessons/02-labels";
 import Line from "./components/lessons/03-line";
 import Scatter from "./components/lessons/04-scatter";
+import ScatterAnimated from "./components/lessons/04a-animated";
 import Tree from "./components/lessons/05-tree";
 import Hexbin from "./components/lessons/06-hexbin";
 import Multiline from "./components/lessons/07-multi-line";
@@ -33,6 +34,7 @@ class Root extends React.Component {
             <Router path="labels" component={Labels}/>
             <Router path="line" component={Line}/>
             <Router path="scatter" component={Scatter}/>
+            <Router path="scatter-animated" component={ScatterAnimated}/>
             <Router path="tree" component={Tree}/>
             <Router path="hexbin" component={Hexbin}/>
             <Router path="multiline" component={Multiline}/>

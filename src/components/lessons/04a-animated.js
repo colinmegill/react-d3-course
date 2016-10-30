@@ -3,29 +3,49 @@
 beetles dataset
 & random in setstate for playing with animations
 
-import {scatterplotGenerator} from "../data/generators";
-
 */
 
 import React from "react";
 // import _ from "lodash";
 import * as d3 from "d3";
-import beetles from "../../data/beetles";
+import {scatterplotGenerator} from "../../data/generators";
 import Heading from "../framework/heading";
-import {VictoryAxis} from "victory";
+import {VictoryAxis, VictoryAnimation} from "victory";
 
 class Scatter extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dataset: scatterplotGenerator(100)
+    };
+  }
+  componentDidMount() {
+    setInterval(() => {
+      this.setState({dataset: scatterplotGenerator(100)})
+    }, 1000)
+  }
   render() {
     const leftPadding = 30;
     const bottomPadding = 30;
     const chartHeight = 500;
     const chartWidth = 1000;
-    const y = d3.scaleLinear().domain([0, 50000]).range([0, chartHeight])
+    const y = d3.scaleLinear().domain([0, 50000]).range([0, chartHeight]);
     return (
       <div style={{margin: 20}}>
-        <Heading> Scatter </Heading>
+        <Heading> Animated Scatterplot </Heading>
         <svg height={chartHeight} width={chartWidth} style={{border: "1px solid rgb(230,230,230)"}}>
-
+          {
+            this.state.dataset.map((d, i) => {
+              return (
+                <VictoryAnimation key={i} data={{x: d[0], y: d[1]}}>
+                  {(tween) => {
+                    console.log(tween)
+                      return (<circle cx={tween.x} cy={tween.y} key={i} r="3"/>)
+                  }}
+                </VictoryAnimation>
+              )
+            })
+          }
         </svg>
       </div>
     );
@@ -33,6 +53,7 @@ class Scatter extends React.Component {
 }
 
 export default Scatter;
+
 
 /*
 
