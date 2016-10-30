@@ -1,6 +1,10 @@
-// https://bl.ocks.org/mbostock/4248145
+/*
 
-/* beetles dataset */
+  beetles dataset
+
+  http://bl.ocks.org/mbostock/5583afd2a0d03b9c94918659fa151cac
+
+*/
 
 import React from "react";
 import Radium from "radium";
