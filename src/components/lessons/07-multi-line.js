@@ -1,4 +1,10 @@
-/* pickety dataset with step interpolation*/
+/*
+
+pickety dataset with step interpolation
+buttons to activate
+deep linking with query params to persist
+
+*/
 
 import React from "react";
 import Radium from "radium";
