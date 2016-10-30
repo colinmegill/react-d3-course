@@ -12,10 +12,15 @@ import configureStore from "./store";
 // controller view
 import App from "./components/app";
 import Bar from "./components/lessons/01-bar";
-import Label from "./components/lessons/02-labels";
+import Labels from "./components/lessons/02-labels";
+import Line from "./components/lessons/03-line";
+import Scatter from "./components/lessons/04-scatter";
+import Tree from "./components/lessons/05-tree";
+import Hexbin from "./components/lessons/06-hexbin";
+import Multiline from "./components/lessons/07-multi-line";
+import Nobels from "./components/lessons/nobels";
 
 const store = configureStore();
-
 
 class Root extends React.Component {
   render() {
@@ -25,7 +30,13 @@ class Root extends React.Component {
           <Router history={browserHistory}>
             <Route path="/" component={App}/>
             <Router path="bar" component={Bar}/>
-            <Router path="label" component={Label}/>
+            <Router path="labels" component={Labels}/>
+            <Router path="line" component={Line}/>
+            <Router path="scatter" component={Scatter}/>
+            <Router path="tree" component={Tree}/>
+            <Router path="hexbin" component={Hexbin}/>
+            <Router path="multiline" component={Multiline}/>
+            <Router path="nobel" component={Nobels}/>
           </Router>
         </Provider>
       </div>

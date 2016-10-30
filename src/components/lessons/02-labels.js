@@ -1,3 +1,9 @@
+/*
+
+componetization
+
+*/
+
 import React from "react";
 import Radium from "radium";
 // import _ from "lodash";
@@ -12,11 +18,11 @@ class Labels extends React.Component {
     const bottomPadding = 30;
     const chartHeight = 500;
     const chartWidth = 1000;
-    const y = d3.scaleLinear().domain([0, 50000]).range([0, chartHeight])
+    const y = d3.scaleLinear().domain([0, 50000]).range([0, chartHeight]);
     return (
       <div style={{margin: 20}}>
-        <Heading text="Bar Chart"/>
-        <svg height={chartHeight} width={1000} style={{border: "1px solid rgb(230,230,230)"}}>
+        <Heading> Labels </Heading>
+        <svg height={chartHeight} width={chartWidth} style={{border: "1px solid rgb(230,230,230)"}}>
           {mountains.map((mountain, i) => {
             if (i < 15) {
               return (
