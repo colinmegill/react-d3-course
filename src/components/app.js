@@ -19,7 +19,7 @@ class App extends React.Component {
     return (
       <Flex alignItems={"baseline"} justifyContent="space-between" style={{margin: 20}}>
         <div>
-          <p style={{fontSize: 12, fontWeight: 700, textTransform: "uppercase"}}> React & D3 </p>
+          <p style={{fontSize: 12, fontWeight: 700, textTransform: "uppercase"}}> React & D3 Koans </p>
           <Link style={styles.link} to="bar">1: Basic bar chart</Link>
           <Link style={styles.link} to="labels">2: Labels</Link>
           <Link style={styles.link} to="line">3: Line</Link>
