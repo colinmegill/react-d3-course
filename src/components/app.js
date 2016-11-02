@@ -21,10 +21,13 @@ class App extends React.Component {
         <div>
           <p style={{fontSize: 12, fontWeight: 700, textTransform: "uppercase"}}> React & D3 Koans </p>
           <Link style={styles.link} to="bar">1: Basic bar chart</Link>
-          <Link style={styles.link} to="labels">2: Labels</Link>
+          <Link style={styles.link} to={"label"}>2: Labels</Link>
           <Link style={styles.link} to="line">3: Line</Link>
           <Link style={styles.link} to="scatter">4: Scatterplot</Link>
           <Link style={styles.link} to="scatter-animated">4a: Animating a scatterplot</Link>
+          <Link style={styles.link} to="color-animated">4b: Animating colors</Link>
+          <Link style={styles.link} to="animated-beetle">4b: Animating beetle scatterplot</Link>
+
           <Link style={styles.link} to="tree">5: Tree </Link>
           <Link style={styles.link} to="hexbin">6: Hexbin </Link>
           <Link style={styles.link} to="multiline">7: Multiline </Link>

@@ -16,14 +16,15 @@ import Labels from "./components/lessons/02-labels";
 import Line from "./components/lessons/03-line";
 import Scatter from "./components/lessons/04-scatter";
 import ScatterAnimated from "./components/lessons/04a-animated";
+import ColorAnimated from "./components/lessons/04b-animated-color";
+import AnimatedBeetleScatter from "./components/lessons/04c-animated-beetles";
 import Tree from "./components/lessons/05-tree";
 import Hexbin from "./components/lessons/06-hexbin";
 import Multiline from "./components/lessons/07-multi-line";
 import Nobels from "./components/lessons/nobels";
+import HelloWorld from "./components/lessons/hello-world";
 
 const store = configureStore();
-
-
 
 class Root extends React.Component {
   render() {
@@ -37,11 +38,14 @@ class Root extends React.Component {
               <Route path="line" component={Line}/>
               <Route path="scatter" component={Scatter}/>
               <Route path="scatter-animated" component={ScatterAnimated}/>
+              <Route path="animated-beetle" component={AnimatedBeetleScatter}/>
+              <Route path="color-animated" component={ColorAnimated}/>
               <Route path="tree" component={Tree}/>
               <Route path="hexbin" component={Hexbin}/>
               <Route path="multiline" component={Multiline}/>
             </Route>
-            <Route path="nobel" component={Nobels}/>
+            <Route path="nobel/:gender/:country/:otherFilters" component={Nobels}/>
+            <Route path="hello" component={HelloWorld}/>
           </Router>
         </Provider>
       </div>

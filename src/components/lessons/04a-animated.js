@@ -16,13 +16,12 @@ class Scatter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      dataset: scatterplotGenerator(100)
+      position: 100
     };
   }
-  componentDidMount() {
-    setInterval(() => {
-      this.setState({dataset: scatterplotGenerator(100)})
-    }, 1000)
+  changePosition() {
+
+    this.setState({position: this.state.position === 100 ? 200 : 100})
   }
   render() {
     const leftPadding = 30;
@@ -33,19 +32,13 @@ class Scatter extends React.Component {
     return (
       <div>
         <Heading> Animated Scatterplot </Heading>
+        <button onClick={this.changePosition.bind(this)}> Change position </button>
         <svg height={chartHeight} width={chartWidth} style={{border: "1px solid rgb(230,230,230)"}}>
-          {
-            this.state.dataset.map((d, i) => {
-              return (
-                <VictoryAnimation key={i} data={{x: d[0], y: d[1]}}>
-                  {(tween) => {
-                    console.log(tween)
-                      return (<circle cx={tween.x} cy={tween.y} key={i} r="3"/>)
-                  }}
-                </VictoryAnimation>
-              )
-            })
-          }
+          <VictoryAnimation data={{x: this.state.position}}>
+            {(tween) => {
+                return (<circle cx={tween.x} cy={300} r="3"/>)
+            }}
+          </VictoryAnimation>
         </svg>
       </div>
     );
