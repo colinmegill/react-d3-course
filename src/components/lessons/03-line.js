@@ -19,12 +19,16 @@ import React from "react";
 import Radium from "radium";
 // import _ from "lodash";
 import * as d3 from "d3";
-import mountains from "../../data/mountains";
 import Heading from "../framework/heading";
+import MultiSeriesLine from "./03-line-d3";
 
 class Line extends React.Component {
+
+  componentDidMount() {
+    MultiSeriesLine();
+  }
+
   render() {
-    console.log(mountains)
     const leftPadding = 30;
     const bottomPadding = 30;
     const chartHeight = 800;
@@ -33,8 +37,11 @@ class Line extends React.Component {
     return (
       <div>
         <Heading> Line </Heading>
-        <svg height={chartHeight} width={chartWidth} style={{border: "1px solid rgb(230,230,230)"}}>
+        <svg id="d3LineChartAttachPoint"
+          height={chartHeight}
+          width={chartWidth} style={{border: "1px solid rgb(230,230,230)"}}>
 
+          <circle r={50} cx={200} cy={200}/>
         </svg>
       </div>
     );
