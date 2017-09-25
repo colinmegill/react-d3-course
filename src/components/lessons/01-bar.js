@@ -21,21 +21,37 @@ class Bar extends React.Component {
     return (
       <div>
         <Heading> Bar Chart </Heading>
-        <svg height={chartHeight} width={chartWidth} style={{border: "1px solid rgb(230,230,230)"}}>
-          {mountains.map((mountain, i) => {
-            return (
-              <rect
-                fill={"rgba(255,0,0,.2)"}
-                x={i*6 + leftPadding}
-                y={chartHeight - bottomPadding - y(mountain["Height (ft)"])}
-                width={4}
-                height={y(mountain["Height (ft)"])}/>
-            )
-          })}
-        </svg>
+          {
+            mountains.map((mountain, i) => {
+              return (
+                <p>
+                  {`
+                  ${mountain.Mountain} is in the range
+                  ${mountain.Range} and it's
+                  ${mountain["Height (m)"]} high.
+                  `}
+                </p>
+              )
+            })
+          }
       </div>
     );
   }
 }
 
 export default Bar;
+//
+// <svg
+//   height={chartHeight}
+//   width={chartWidth}
+//   style={{border: "1px solid rgb(230,230,230)"}}>
+// </svg>
+//
+// return (
+//   <rect
+//     fill={"rgba(255,0,0,.2)"}
+//     x={i*6 + leftPadding}
+//     y={chartHeight - bottomPadding - y(mountain["Height (ft)"])}
+//     width={4}
+//     height={y(mountain["Height (ft)"])}/>
+// )

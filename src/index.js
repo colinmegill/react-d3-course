@@ -33,8 +33,7 @@ class Root extends React.Component {
       <div>
         <Provider store={store}>
           <Router history={browserHistory}>
-            <Route path="learnreact" component={LearnReact}/>
-            <Route path="/examples" component={App}>
+            <Route path="/" component={App}>
               <Route path="bar" component={Bar}/>
               <Route path="labels" component={Labels}/>
               <Route path="line" component={Line}/>
@@ -62,3 +61,5 @@ import injectTapEventPlugin from "react-tap-event-plugin";
 injectTapEventPlugin();
 
 ReactDOM.render(<Root/>, document.getElementById("root"));
+
+// <Route path="learnreact" component={LearnReact}/>
