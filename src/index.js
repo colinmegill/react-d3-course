@@ -21,6 +21,8 @@ import Hexbin from "./components/lessons/06-hexbin";
 import Multiline from "./components/lessons/07-multi-line";
 import Nobels from "./components/lessons/nobels";
 
+import LearnReact from "./components/LearnReact"
+
 const store = configureStore();
 
 
@@ -31,7 +33,8 @@ class Root extends React.Component {
       <div>
         <Provider store={store}>
           <Router history={browserHistory}>
-            <Route path="/" component={App}>
+            <Route path="learnreact" component={LearnReact}/>
+            <Route path="/examples" component={App}>
               <Route path="bar" component={Bar}/>
               <Route path="labels" component={Labels}/>
               <Route path="line" component={Line}/>
