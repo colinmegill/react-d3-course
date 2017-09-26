@@ -12,9 +12,19 @@ import React from "react";
 import * as d3 from "d3";
 import beetles from "../../data/beetles";
 import Heading from "../framework/heading";
-import {VictoryAxis} from "victory";
+import {VictoryAxis, VictoryAnimation} from "victory";
 
 class Scatter extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      x: Math.random() * 200,
+      y: Math.random() * 200,
+      r: Math.random() * 50,
+      color: '#'+(Math.random()*0xFFFFFF<<0).toString(16) // !
+    };
+  }
+
   render() {
     const leftPadding = 30;
     const bottomPadding = 30;
@@ -24,8 +34,34 @@ class Scatter extends React.Component {
     return (
       <div>
         <Heading> Scatter </Heading>
+        <button onClick={() => {
+            this.setState({
+              x: Math.random() * 200,
+              y: Math.random() * 200,
+              r: Math.random() * 50,
+              color: '#'+(Math.random()*0xFFFFFF<<0).toString(16) // !
+            })
+          }}>
+          Transition
+        </button>
         <svg height={chartHeight} width={chartWidth} style={{border: "1px solid rgb(230,230,230)"}}>
-
+          <VictoryAnimation
+            data={{
+              x: this.state.x,
+              y: this.state.y,
+              r: this.state.r,
+              color: this.state.color
+            }}>
+            {(tween) => {
+              return (
+                <circle
+                  cx={tween.x}
+                  cy={tween.y}
+                  fill={tween.color}
+                  r={tween.r}/>
+              )
+            }}
+          </VictoryAnimation>
         </svg>
       </div>
     );
