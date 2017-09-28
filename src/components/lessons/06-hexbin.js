@@ -10,8 +10,15 @@ import Radium from "radium";
 // import _ from "lodash";
 import * as d3 from "d3";
 import * as d3contour from 'd3-contour';
+import * as d3chromatic from 'd3-scale-chromatic';
 import mountains from "../../data/mountains";
 import Heading from "../framework/heading";
+
+const color = d3.scaleSequential(d3chromatic.interpolateYlGnBu)
+  .domain([0, 1.8]); // Points per square pixel.
+const geoPath = d3.geoPath();
+
+const Contour = ({contour}) => <path fill={color(contour.value)} d={geoPath(contour)} />
 
 class Hexbin extends React.Component {
   constructor(props) {
@@ -52,8 +59,7 @@ class Hexbin extends React.Component {
       const y = d3.scaleLog()
         .domain([3e2, 2e4])
         .rangeRound([this.height - this.margin.bottom, this.margin.top]);
-      const color = d3.scaleSequential(d3.interpolateYlGnBu)
-        .domain([0, 1.8]); // Points per square pixel.
+
 
       console.log('got diamonds data', diamonds)
       var contoursParsed = d3contour.contourDensity()
@@ -63,9 +69,7 @@ class Hexbin extends React.Component {
         .bandwidth(10)
       (diamonds)
 
-      console.log('got diamonds data', diamonds, contoursParsed)
-
-      // this.setState({diamonds})
+      this.setState({diamonds, contoursParsed})
 
     });
 
@@ -74,13 +78,22 @@ class Hexbin extends React.Component {
 
   }
 
+  drawContours() {
+    return this.state.contoursParsed.map((contour) => <Contour contour={contour} />)
+  }
+
   render() {
     console.log('06-hexbin render sees', this.state, this.canvas)
 
     return (
       <div>
         <Heading> Hex bins </Heading>
-        <svg width={this.width} height={this.height}></svg>
+        <svg
+          style={{border: "1px solid black"}}
+          width={this.width}
+          height={this.height}>
+          {this.state.contoursParsed ? this.drawContours() : null }
+        </svg>
       </div>
     );
   }
