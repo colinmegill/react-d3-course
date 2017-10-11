@@ -17,23 +17,26 @@ class App extends React.Component {
   render() {
 
     return (
-      <Flex alignItems={"baseline"} justifyContent="space-between" style={{margin: 20}}>
-        <div>
-          <p style={{fontSize: 12, fontWeight: 700, textTransform: "uppercase"}}> React & D3 Koans </p>
-          <Link style={styles.link} to="bar">1: Basic bar chart</Link>
-          <Link style={styles.link} to="labels">2: Labels</Link>
-          <Link style={styles.link} to="line">3: Line</Link>
-          <Link style={styles.link} to="scatter">4: Scatterplot</Link>
-          <Link style={styles.link} to="scatter-animated">4a: Animating a scatterplot</Link>
-          <Link style={styles.link} to="tree">5: Tree </Link>
-          <Link style={styles.link} to="hexbin">6: Hexbin </Link>
-          <Link style={styles.link} to="multiline">7: Multiline </Link>
-          <Link style={styles.link} to="nobel"> Nobel </Link>
-        </div>
+      <div style={{margin: 40}}>
+        <h1>React & D3</h1>
         {this.props.children}
-      </Flex>
+      </div>
     );
   }
 }
 
 export default App;
+
+
+// <div>
+//   <p style={{fontSize: 12, fontWeight: 700, textTransform: "uppercase"}}> React & D3 Koans </p>
+//   <Link style={styles.link} to="bar">1: Basic bar chart</Link>
+//   <Link style={styles.link} to="labels">2: Labels</Link>
+//   <Link style={styles.link} to="line">3: Line</Link>
+//   <Link style={styles.link} to="scatter">4: Scatterplot</Link>
+//   <Link style={styles.link} to="scatter-animated">4a: Animating a scatterplot</Link>
+//   <Link style={styles.link} to="tree">5: Tree </Link>
+//   <Link style={styles.link} to="hexbin">6: Hexbin </Link>
+//   <Link style={styles.link} to="multiline">7: Multiline </Link>
+//   <Link style={styles.link} to="nobel"> Nobel </Link>
+// </div>

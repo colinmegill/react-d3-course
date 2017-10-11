@@ -20,6 +20,7 @@ import Tree from "./components/lessons/05-tree";
 import Hexbin from "./components/lessons/06-hexbin";
 import Multiline from "./components/lessons/07-multi-line";
 import Nobels from "./components/lessons/nobels";
+import Playground from "./components/lessons/playground";
 
 import LearnReact from "./components/LearnReact"
 
@@ -34,6 +35,7 @@ class Root extends React.Component {
         <Provider store={store}>
           <Router history={browserHistory}>
             <Route path="/" component={App}>
+              <Route path="playground" component={Playground}/>
               <Route path="bar" component={Bar}/>
               <Route path="labels" component={Labels}/>
               <Route path="line" component={Line}/>
