@@ -192,7 +192,6 @@ class Parent extends React.Component {
       d3.select("#scatterplotAttachPointD3")
         .selectAll("dot")
         .data(subset)
-        .exit().remove()
         .enter()
         .append("circle")
         .attr("r", 3)
@@ -208,7 +207,9 @@ class Parent extends React.Component {
           return color;
         })
         .attr("cx", (d) => { return x(d.Width); })
-        .attr("cy", (d) => { return y(d.Angle); });
+        .attr("cy", (d) => { return y(d.Angle); })
+        .exit().remove()
+;
     }
   }
 
