@@ -2,6 +2,7 @@ import React from "react";
 import {Link} from "react-router";
 import Heading from "./framework/heading";
 import Flex from "./framework/flex";
+import Controls from "./controls";
 
 const styles = {
   link: {
@@ -19,6 +20,7 @@ class App extends React.Component {
     return (
       <div style={{margin: 40}}>
         <h1>React & D3</h1>
+        <Controls/>
         {this.props.children}
       </div>
     );
