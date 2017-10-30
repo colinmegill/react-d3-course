@@ -1,6 +1,7 @@
 
 const defaultState = {
-  colorBy: "C"
+  colorBy: "C",
+  colorByOptions: ["A", "B", "C"]
 }
 
 const ColorBy = (state = defaultState, action) => {

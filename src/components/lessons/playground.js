@@ -1,5 +1,6 @@
 import React from "react";
 import _ from "lodash";
+import { connect } from "react-redux";
 
 const data = [
   {"name": "A", "size": 5},
@@ -52,6 +53,13 @@ class Bar extends React.Component {
   }
 }
 
+@connect((state) => {
+  console.log("connect in controls sees: ", state)
+  return {
+    colorBy: state.ColorBy.colorBy,
+    colorByOptions: state.ColorBy.colorByOptions
+  };
+})
 class Playground extends React.Component {
   constructor(props) {
     super(props);
@@ -61,38 +69,36 @@ class Playground extends React.Component {
   }
   componentDidMount() {
 
-    d3.select("#axisY")
-        .append("g")
-        .call(d3.axisLeft(y))
-      .append("text")
-        .attr("transform", "rotate(-90)")
-        .attr("y", 6)
-        .attr("dy", "0.71em")
-        .attr("text-anchor", "end")
-        .text("Size");
+
+  }
+  getFill() {
+    let fill = "black";
+    if (this.props.colorBy === "A") {
+      fill = "red"
+    } else if (this.props.colorBy === "B") {
+      fill = "blue"
+    } else if (this.props.colorBy === "C") {
+      fill = "orange"
+    }
+    return fill;
   }
   render() {
+    console.log("playground component sees: ", this.props)
     return (
       <div>
-        <button onClick={() => { this.setState({counter: this.state.counter + 5}) }}>
-          Increment
-        </button>
-        {this.state.counter}
         <div>
           <svg
-
             style={{
               border: "1px solid lightgrey"
             }}
             height={chartSide}
             width={chartSide}>
-            <g
-              id="axisY"
-              transform={`translate(${chartMargins - 10},${-chartMargins})`}>
-            </g>
-            {
-              _.map(data, (d, i) => <Bar key={i} name={d.name} d={d.size} i={i}/>)
-            }
+            <circle
+              cx={100}
+              cy={100}
+              fill={this.getFill()}
+              r={20}
+              />
           </svg>
         </div>
       </div>
@@ -102,8 +108,27 @@ class Playground extends React.Component {
 
 export default Playground;
 
-// <circle
-//   cx={250}
-//   cy={250}
-//   r={this.state.counter}
-//   />
+
+
+// <button onClick={() => { this.setState({counter: this.state.counter + 5}) }}>
+//   Increment
+// </button>
+
+// <g
+//   id="axisY"
+//   transform={`translate(${chartMargins - 10},${-chartMargins})`}>
+// </g>
+// {
+//   _.map(data, (d, i) => <Bar key={i} name={d.name} d={d.size} i={i}/>)
+// }
+
+
+// d3.select("#axisY")
+//     .append("g")
+//     .call(d3.axisLeft(y))
+//   .append("text")
+//     .attr("transform", "rotate(-90)")
+//     .attr("y", 6)
+//     .attr("dy", "0.71em")
+//     .attr("text-anchor", "end")
+//     .text("Size");
