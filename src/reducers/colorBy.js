@@ -1,3 +1,4 @@
+import URI from "urijs";
 
 const defaultState = {
   colorBy: "C",
@@ -6,6 +7,11 @@ const defaultState = {
 
 const ColorBy = (state = defaultState, action) => {
   switch (action.type) {
+  case "url changed":
+    const uri = new URI(action.url)
+    return Object.assign({}, state, {
+      colorBy: uri.search(true).colorBy
+    });
   case "colorBy changed":
     return Object.assign({}, state, {
       colorBy: action.data,

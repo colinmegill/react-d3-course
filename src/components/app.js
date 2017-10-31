@@ -3,6 +3,7 @@ import {Link} from "react-router";
 import Heading from "./framework/heading";
 import Flex from "./framework/flex";
 import Controls from "./controls";
+import { connect } from "react-redux";
 
 const styles = {
   link: {
@@ -13,7 +14,17 @@ const styles = {
   }
 };
 
+@connect()
 class App extends React.Component {
+
+  onURLChanged() {
+    this.props.dispatch({type: "url changed", url: document.location.href});
+  }
+
+  componentDidMount() {
+    window.addEventListener("popstate", this.onURLChanged)
+    this.onURLChanged();
+  }
 
   render() {
 
