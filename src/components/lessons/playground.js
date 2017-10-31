@@ -65,11 +65,29 @@ class Playground extends React.Component {
     super(props);
     this.state = {
       counter: 3,
+      d3elem: null,
     };
   }
   componentDidMount() {
+    const d3elem = d3.select("#d3circleAttachPoint")
+      .append("circle")
+      .attr("cx", 150)
+      .attr("cy", 150)
+      .attr("r", 5);
 
+    this.setState({d3elem})
+  }
 
+  componentWillReceiveProps(nextProps) {
+    if (
+      this.state.d3elem
+    ) {
+      this.doUpdateCircle();
+    }
+  }
+  doUpdateCircle() {
+    this.state.d3elem
+      .attr("fill", this.getFill.bind(this));
   }
   getFill() {
     let fill = "black";
@@ -83,24 +101,17 @@ class Playground extends React.Component {
     return fill;
   }
   render() {
-    console.log("playground component sees: ", this.props)
+    console.log("playground component sees: ", this.state)
     return (
       <div>
-        <div>
           <svg
             style={{
               border: "1px solid lightgrey"
             }}
             height={chartSide}
             width={chartSide}>
-            <circle
-              cx={100}
-              cy={100}
-              fill={this.getFill()}
-              r={20}
-              />
+            <g id="d3circleAttachPoint"></g>
           </svg>
-        </div>
       </div>
     );
   }
