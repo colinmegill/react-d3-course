@@ -1,11 +1,12 @@
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
+import customURLmiddleware from "./customURLmiddleware";
 import { devTools } from 'redux-devtools';
 import createHistory from 'history/lib/createBrowserHistory';
 
 import rootReducer from "../reducers";
 
-const middleware = [thunk];
+const middleware = [thunk, customURLmiddleware];
 
 let finalCreateStore;
 
