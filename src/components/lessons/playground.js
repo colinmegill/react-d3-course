@@ -1,6 +1,7 @@
 import React from "react";
 import _ from "lodash";
 import { connect } from "react-redux";
+import {scatterplotGenerator} from "../../data/generators";
 
 const data = [
   {"name": "A", "size": 5},
@@ -69,49 +70,43 @@ class Playground extends React.Component {
     };
   }
   componentDidMount() {
-    const d3elem = d3.select("#d3circleAttachPoint")
-      .append("circle")
-      .attr("cx", 150)
-      .attr("cy", 150)
-      .attr("r", 5);
+    const canvasElem = d3.select("#canvasAttachPoint")
+      .append("canvas")
+      .attr("width", 500)
+      .attr("height", 500)
 
-    this.setState({d3elem})
+    const canvasContext = canvasElem.node().getContext("2d");
+
+    this.setState({canvasContext})
   }
-
-  componentWillReceiveProps(nextProps) {
-    if (
-      this.state.d3elem
-    ) {
-      this.doUpdateCircle();
+  componentDidUpdate() {
+    if (this.state.canvasContext) {
+      this.drawGraph()
     }
   }
-  doUpdateCircle() {
-    this.state.d3elem
-      .attr("fill", this.getFill.bind(this));
+
+  drawGraph() {
+    this.state.canvasContext.clearRect(0,0,500,500)
+    const scatterData = scatterplotGenerator()
+    scatterData.forEach((d) => {
+      this.state.canvasContext.beginPath()
+      this.state.canvasContext.arc(
+        d[0],
+        d[1],
+        6,
+        0,
+        1
+      )
+      this.state.canvasContext.fill()
+      // this.state.canvasContext.fillStyle("rgb(0,0,0)")
+    })
+
   }
-  getFill() {
-    let fill = "black";
-    if (this.props.colorBy === "A") {
-      fill = "red"
-    } else if (this.props.colorBy === "B") {
-      fill = "blue"
-    } else if (this.props.colorBy === "C") {
-      fill = "orange"
-    }
-    return fill;
-  }
+
   render() {
-    console.log("playground component sees: ", this.state)
     return (
-      <div>
-          <svg
-            style={{
-              border: "1px solid lightgrey"
-            }}
-            height={chartSide}
-            width={chartSide}>
-            <g id="d3circleAttachPoint"></g>
-          </svg>
+      <div id="canvasAttachPoint">
+
       </div>
     );
   }
@@ -120,6 +115,39 @@ class Playground extends React.Component {
 export default Playground;
 
 
+
+// componentWillReceiveProps(nextProps) {
+//   if (
+//     this.state.d3elem
+//   ) {
+//     this.doUpdateCircle();
+//   }
+// }
+
+// doUpdateCircle() {
+//   this.state.d3elem
+//     .attr("fill", this.getFill.bind(this));
+// }
+// getFill() {
+//   let fill = "black";
+//   if (this.props.colorBy === "A") {
+//     fill = "red"
+//   } else if (this.props.colorBy === "B") {
+//     fill = "blue"
+//   } else if (this.props.colorBy === "C") {
+//     fill = "orange"
+//   }
+//   return fill;
+// }
+
+// <svg
+//   style={{
+//     border: "1px solid lightgrey"
+//   }}
+//   height={chartSide}
+//   width={chartSide}>
+//   <g id="d3circleAttachPoint"></g>
+// </svg>
 
 // <button onClick={() => { this.setState({counter: this.state.counter + 5}) }}>
 //   Increment
